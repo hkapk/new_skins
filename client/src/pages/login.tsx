@@ -46,7 +46,7 @@ export const Login: React.FC = () => {
     <Box
       component="div"
       sx={{
-        backgroundColor: '#FCFCFC'
+        backgroundColor: '#000000'
       }}
     >
       <Container
@@ -74,6 +74,6 @@ export const Login: React.FC = () => {
           </Box>
         </Box>
       </Container>
-    </Box>
+    </Box >
   );
 };

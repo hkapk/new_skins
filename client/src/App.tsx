@@ -9,6 +9,11 @@ import {
   ReadyPage,
   ErrorComponent,
 } from "@pankod/refine-mui";
+import {
+  AccountCircleOutlined,
+  PeopleAltOutlined,
+  SportsBar
+} from '@mui/icons-material';
 
 import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
@@ -16,7 +21,12 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import axios, { AxiosRequestConfig } from "axios";
 import { ColorModeContextProvider } from "contexts";
 import { Title, Sider, Layout, Header } from "components/layout";
-import { Login } from "pages/login";
+import {
+  Login,
+  Home,
+  players,
+  myProfile
+} from "pages";
 import { CredentialResponse } from "interfaces/google";
 import { parseJwt } from "utils/parse-jwt";
 
@@ -98,12 +108,21 @@ function App() {
           catchAll={<ErrorComponent />}
           resources={[
             {
-              name: "posts",
+              name: "new round",
+              options: { label: 'New Round' },
               list: MuiInferencer,
-              edit: MuiInferencer,
-              show: MuiInferencer,
-              create: MuiInferencer,
-              canDelete: true,
+              icon: < SportsBar />,
+            },
+            {
+              name: "my profile",
+              options: { label: 'My Profile' },
+              icon: <AccountCircleOutlined />,
+              list: MuiInferencer,
+            },
+            {
+              name: "other players",
+              list: MuiInferencer,
+              icon: <PeopleAltOutlined />
             },
           ]}
           Title={Title}
@@ -113,6 +132,7 @@ function App() {
           routerProvider={routerProvider}
           authProvider={authProvider}
           LoginPage={Login}
+          DashboardPage={Home}
         />
       </RefineSnackbarProvider>
     </ColorModeContextProvider>
